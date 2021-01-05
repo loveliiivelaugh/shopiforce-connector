@@ -1,6 +1,12 @@
 const express = require('express')
 const router = express.Router();
 
+
+router.get('/', (req, res) => (
+  res.send(
+    'Congratulations this server is running at port 8080.\nThis is our Shopify and Salesforce connector app.'
+    )
+));
 // Define Routes
 // shopify
 router.use('/api/shopify/orders', require('./api/shopify-orders'));
