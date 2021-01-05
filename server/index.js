@@ -20,7 +20,7 @@ app.use(cors());
 
 //initialize session
 app.use(session({
-  secret: 'S3CRE7',
+  secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true
 }));
@@ -33,18 +33,18 @@ app.use(bodyParser.urlencoded({
 
 // shopify connection
 const shopify = new Shopify({
-  shopName: 'Michael-io',
-  apiKey: 'c86473ef90e0bae0a3820c95f3fe0e3c',
-  password: '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'
+  shopName: process.env.SHOP_NAME,
+  apiKey: process.env.API_KEY,
+  password: process.env.PASSWORD
 });
 
 //jsForce connection
 const oauth2 = new jsforce.OAuth2({
   // you can change loginUrl to connect to sandbox or prerelease env.
-  loginUrl: 'https://mindful-goat-q634g5-dev-ed.my.salesforce.com',
+  loginUrl: process.env.LOGIN_URL,
   //clientId and Secret will be provided when you create a new connected app in your SF developer account
-  clientId: '3MVG9Kip4IKAZQEV9.8QSad7M3G5czNcF6_bEj0V6nPLbMgSoOvKH4ltPLKB.vae12X4rA4i7wgw.Vza4pzIW', // ? Consumer Key ??
-  clientSecret: 'EE78F8E2A495E5729FF692C47D83C3A9CCE7DCFC0E48EA24F56E08535FC8E1CD',
+  clientId: process.env.CLIENT_ID, // ? Consumer Key ??
+  clientSecret: process.env.CLIENT_SECRET,
   //redirectUri : 'http://localhost:' + port +'/token'
   redirectUri: 'http://localhost:8080/token'
 });
@@ -360,6 +360,13 @@ app.post('/api/products', function (req, res) {
   }
 
 });
+
+
+app.get('/', (req, res) => (
+  res.send(
+    'Congratulations this server is running at port 8080.\nThis is our Shopify and Salesforce connector app.'
+    )
+));
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
