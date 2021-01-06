@@ -1,3 +1,13 @@
+# Shopiforce Connector sample
+
+This is a project I have been working on to create a custom connector that integrate Shopify storefronts with Salesforce. I need to do a few things still before this is ready to be shared but I am working on it. More to come.
+
+### To Do 
+* Add client folder to repository
+* Add instructions to download and run locally
+
+<hr />
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
